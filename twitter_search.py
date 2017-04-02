@@ -5,6 +5,7 @@ import json
 import time
 
 import tweepy
+
 from credentials import *
 
 
@@ -20,7 +21,7 @@ def printsMenu():
   print("Recover tweets of some topic between 2 dates and export it into .csv files to be imported in Gephi")
 
   print("\nAuthor: Aythami Estévez Olivas <aythae [at] gmail [dot] com>")
-  print("Repository: https://github.com/AythaE/GIW")
+  print("Repository: https://github.com/AythaE/twitter_search")
 
   print("\n\n")
   searchQuery = input("Insert the search query to look for tweets: ")
@@ -50,8 +51,8 @@ def printsMenu():
       csvTweets += "_" + until
     csvTweets += ")_Tweets.csv"
   else:
-    csvTweets += "_(" + str(today.day) + "-" + \
-        str(today.month) + "-" + str(today.year) + ")_Tweets.csv"
+    csvTweets += "_(" + str(today.year) + "-" + \
+        str(today.month) + "-" + str(today.day) + ")_Tweets.csv"
   print("Saving tweets to " + csvTweets)
   saveTweetsToCSV(totalTweets, csvTweets)
 
@@ -64,8 +65,8 @@ def printsMenu():
       csvUsers += "_" + until
     csvUsers += ")_Users.csv"
   else:
-    csvUsers += "_(" + str(today.day) + "-" + \
-        str(today.month) + "-" + str(today.year) + ")_Users.csv"
+    csvUsers += "_(" + str(today.year) + "-" + \
+        str(today.month) + "-" + str(today.day) + ")_Users.csv"
   print("Saving tweets users to " + csvUsers)
   saveTweetsUsersToCSV(totalTweets, csvUsers)
 
@@ -78,8 +79,8 @@ def printsMenu():
       csvEdges += "_" + until
     csvEdges += ")_Edges.csv"
   else:
-    csvEdges += "_(" + str(today.day) + "-" + \
-        str(today.month) + "-" + str(today.year) + ")_Edges.csv"
+    csvEdges += "_(" + str(today.year) + "-" + \
+        str(today.month) + "-" + str(today.day) + ")_Edges.csv"
 
   print("Saving tweets relationships to " + csvEdges)
   saveTweetRelationshipsToCSV(totalTweets, csvEdges)
@@ -111,7 +112,7 @@ def recoverTweets(searchQuery, numTweets, since, until, lang):
   numSearchs = int(numSearchs)
 
   totalTweets = None
-
+  j = 0
   for j in range(numSearchs):
     try:
       if (j == 0):
